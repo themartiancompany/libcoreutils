@@ -155,13 +155,6 @@ function
     "data",
     "");
   /* global
-       suffix_length:
-         writable */
-  _override_set(
-    "suffix",
-    "length",
-    "");
-  /* global
        chunks_amount:
          writable */
   _override_set(
@@ -216,13 +209,9 @@ function
         "input",
         "file");
   _override_set(
-    "suffix",
-    "length",
-    "base64");
-  _override_set(
-    "output",
-    "prefix",
-    _input_file);
+    "decode",
+    "data",
+    "n");
 }
 
 function
@@ -234,12 +223,14 @@ function
       `${app_name} configuration:`,
       `      Runtime environment:   ${runtime_environment}`,
       `              Encode data:   ${encode_data}`,
-      `              Decode data:   ${decode_data}`,
       `       Maximum chunk size:   ${size_max} bytes`,
       `         Amount of chunks:   ${chunks_amount}`,
-      `                  In file:   ${input_file}`,
-      `         Out files prefix:   ${output_prefix}`,
+      `              Input files:`,
     ];
+  for ( _file of _input_files ) {
+    _text.push(
+      `                             ${_file}`);
+  }
   for ( _line of _text ) {
     _msg_info(
       _line);
