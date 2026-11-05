@@ -47,6 +47,11 @@ const
   _cat =
     _libcrash._cat;
 /* global
+     _dir_exists */
+const
+  _dir_exists =
+    _libcrash._dir_exists;
+/* global
      _dirname */
 const
   _dirname =
@@ -61,6 +66,11 @@ const
 const
   _echo2 =
     _libcrash._echo2;
+/* global
+     _file_append */
+const
+  _file_append =
+    _libcrash._file_append;
 /* global
      _global_get */
 const
@@ -270,6 +280,87 @@ function
   return _target_command;
 }
 
+function
+  _output_file_check(
+    _output_file) {
+  let
+    _stdout_print;
+  const
+    _output_file_type =
+      typeof(
+        _output_file);
+  if ( _output_file_type === "undefined" ) {
+    _stdout_print =
+      true;
+  }
+  else if ( _output_file_type === "string" ) {
+    if ( _output_file.length < 1 ) {
+      _stdout_print =
+        true;
+    }
+    else {
+      const
+        _output_dir =
+          _dirname(
+            _output_file);
+      const
+        _output_dir_exists =
+          _dir_exists(
+            _output_dir);
+      if ( ! _output_dir_exists ) {
+        _msg =
+          `Directory '${_output_dir} ` +
+          "does not exist.";
+        _msg_error(
+          _msg,
+          0);
+        throw _msg;
+      }
+      else {
+        _stdout_print =
+          false;
+      }
+    }
+  }
+  else if ( _output_file_type === "object" ) {
+    const
+      _output_file_keys =
+        Object.keys(
+          _output_file);
+    if ( _output_file_keys.length < 1 ) {
+      _stdout_print =
+        true;
+    }
+    else {
+      _msg =
+        "Variable 'output file' should be " +
+        "a string, not an object.";
+      _msg_error(
+        _msg,
+        0);
+      _echo2(
+        _output_file);
+      throw _msg;
+    }
+  else {
+    _msg =
+      "Variable 'output file' should be " +
+      `a string, not an '${_output_file_type}'.`;
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _output_file);
+    throw _msg;
+  }
+  const
+    _output = [
+      _output_file,
+      _stdout_print
+    ];
+  return _output;
+}
+
 async function
   _base64(
     _encode_data,
@@ -281,10 +372,12 @@ async function
     _content,
     _chunks_total,
     _encoded_files,
+    _file_append_args,
     _output_files,
     _file,
     _msg,
-    _target_command;
+    _target_command,
+    _stdout_print;
   const
     _global =
       _global_get();
@@ -376,20 +469,61 @@ async function
         throw _error;
       }
     }
-    for ( _file of _encoded_files ) {
+  }
+  const
+    _output_file_check_args = [
+      _output_file
+    ];
+  try {
+    [ _output_file,
+      _stdout_print ] =
+      _output_file_check.apply(
+        null,
+        _output_file_check_args);
+  }
+  catch(
+    _error) {
+    _msg =
+      "Error running '_output_file_check' " +
+      "with arguments:";
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _output_file_check_args);
+    _echo2(
+      _error);
+    throw _error;
+  }
+  if ( _stdout_print ) {
+    for ( _file of _output_files ) {
       _content =
         _cat(
           _file);
       _printf(
         _content);
+      _rm(
+        _file);
+    }
+    _printf(
+      "\n");
+  }
+  else {
+    for ( _file of _output_files ) {
+      _content =
+        _cat(
+          _file);
+      _file_append_args = [
+        _output_file,
+        _content
+      ];
+      _file_append.apply(
+        null,
+        _file_append_args);
+      _rm(
+        _file);
     }
   }
-  for ( _file of _output_files ) {
-    _rm(
-      _file);
-  }
-  _printf(
-    "\n");
   return _output_files;
 }
 
