@@ -255,7 +255,7 @@ function
     _text = [
       "",
       "Base64 encode or decode FILE, (not standard input), to standard output.",
-      "Mandatory arguments to long options are mandatory for short options too."
+      "Mandatory arguments to long options are mandatory for short options too.",
       "",
       "Usage:",
       "",
