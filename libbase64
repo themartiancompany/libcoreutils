@@ -52,10 +52,20 @@ const
   _dirname =
     _libcrash._dirname;
 /* global
+     _echo */
+const
+  _echo =
+    _libcrash._echo;
+/* global
      _echo2 */
 const
   _echo2 =
     _libcrash._echo2;
+/* global
+     _global_get */
+const
+  _global_get =
+    _libcrash._global_get;
 /* global
      _ls */
 const
@@ -347,8 +357,6 @@ async function
           await _bin2txt.apply(
             null,
             _bin2txt_args);
-        _echo2(
-          _encoded_files);
         _output_files =
           _output_files.concat(
             _encoded_files);
