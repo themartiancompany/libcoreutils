@@ -42,6 +42,11 @@ const
   _basename =
     _libcrash._basename;
 /* global
+     _cat */
+const
+  _cat =
+    _libcrash._cat;
+/* global
      _dirname */
 const
   _dirname =
@@ -66,6 +71,11 @@ const
 const
   _mv =
     _libcrash._mv;
+/* global
+     _printf */
+const
+  _printf =
+    _libcrash._printf;
 /* global
      _require */
 const
@@ -232,6 +242,9 @@ async function
     _input_files,
     _size_max) {
   let
+    _content,
+    _encoded_files,
+    _file,
     _msg,
     _target_command;
   try {
@@ -258,26 +271,39 @@ async function
       `in base64.`;
     _msg_info(
       _msg);
-
+    const
+      _bin2txt_args = [
+        _file,
+        // a moment
+      ];
+    try {
+      _encoded_files = [
+        await _bin2txt.apply(
+          null,
+          _bin2txt_args);
+    }
+    catch(
+      _error) {
+      _msg =
+        "Error running '_bin2txt' with " +
+        "arguments:";
+      _msg_error(
+        _msg,
+        0);
+      _echo2(
+        _bin2txt_args);
+      _echo2(
+        _error);
+      throw _error;
+    }
   }
-  _size_max =
-    Number(
-      _size_max);
-  if ( _chunks_amount > 0 ) {
-    await _split_file(
-      _input_file,
-      _chunks_amount);
+  for ( _file of _encoded_files ) {
+    _content =
+      _cat(
+        _file);
+    _printf(
+      _content);
   }
-  else if ( _size_max > 0 ) {
-    await _split_file_by_size(
-      _input_file,
-      _size_max);
-  }
-  const
-    _output_files =
-      _output_files_get(
-        _input_file,
-        _output_prefix);
   return _output_files;
 }
 
