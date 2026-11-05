@@ -264,6 +264,8 @@ async function
     _file,
     _msg,
     _target_command;
+  _output_files =
+    [];
   try {
     _target_command =
       _target_command_check(
