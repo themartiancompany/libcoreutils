@@ -132,7 +132,7 @@ function
   _override_set(
     "app",
     "name",
-    "tmcbase64");
+    "base64.js");
   /* global
        app_opts:
          writable */
@@ -235,6 +235,7 @@ function
 function
   _config_show() {
   let
+    _file,
     _line;
   const
     _text = [
@@ -362,8 +363,6 @@ async function
     "node");
   _cmdline_parse_help(
     _argv);
-  _echo(
-    _argv);
   _input_args_check(
     _argv);
   _set(
@@ -371,8 +370,6 @@ async function
     "files",
     _argv[
       "_"]);
-  _echo(
-    input_files);
   if ( "d" in _argv ) {
     _set(
       "decode",

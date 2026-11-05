@@ -138,7 +138,9 @@ async function
 
 function
   _target_command_check(
-    _target_command) {
+    _target_command,
+    _encode_data,
+    _decode_data) {
   let
     _msg,
     _target_command_get;
@@ -205,6 +207,16 @@ function
     throw _msg;
   }
   if ( _target_command_get ) {
+    if ( _encode_data === "y" &&
+         _decode_data === "n" ) {
+      _target_command =
+        "encode";
+    }
+    else if ( _encode_data === "n" &&
+              _decode_data === "y" ) {
+      _target_command =
+        "decode";
+    }
     _target_command =
       _default;
   }
@@ -213,13 +225,13 @@ function
 
 async function
   _base64(
-    _target_command,
-    _input_file,
-    _output_prefix,
-    _chunks_amount,
+    _decode_data,
+    _encode_data,
+    _input_files,
     _size_max) {
   let
-    _msg;
+    _msg,
+    _target_command
   try {
     _target_command =
       _target_command_check(
