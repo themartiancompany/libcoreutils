@@ -217,25 +217,29 @@ function
       _target_command =
         "decode";
     }
-    _target_command =
-      _default;
+    else {
+      _target_command =
+        _default;
+    }
   }
   return _target_command;
 }
 
 async function
   _base64(
-    _decode_data,
     _encode_data,
+    _decode_data,
     _input_files,
     _size_max) {
   let
     _msg,
-    _target_command
+    _target_command;
   try {
     _target_command =
       _target_command_check(
-        _target_command);
+        _target_command,
+        _encode_data,
+        _decode_data);
   }
   catch(
     _error) {
@@ -248,23 +252,14 @@ async function
       _error);
     throw _error;
   }
-  const
-    _chunks_amount_not_number =
-      typeof(
-        _chunks_amount) !== "number";
-  if ( _chunks_amount_not_number ) {
+  if ( _target_command === "encode" ) {
     _msg =
-      "Chunks amount must be a number.";
-    _msg_error(
-      _msg,
-      1);
+      `Encoding file '${_file}' ` +
+      `in base64.`;
+    _msg_info(
+      _msg);
+
   }
-  _msg =
-    `Splitting '${_input_file}' ` +
-    `into '${_chunks_amount}' of size '${_size_max}' ` +
-    `into files with prefix '${_output_prefix}':`;
-  _msg_info(
-    _msg);
   _size_max =
     Number(
       _size_max);
