@@ -148,6 +148,13 @@ function
     "environment",
     "");
   /* global
+       encode_data:
+         writable */
+  _override_set(
+    "encode",
+    "data",
+    "");
+  /* global
        decode_data:
          writable */
   _override_set(
@@ -212,6 +219,17 @@ function
     "decode",
     "data",
     "n");
+  const
+    _decode_data =
+      _get(
+        "decode",
+        "data");
+  if ( _decode_data === "n" ) {
+    _override_set(
+      "encode",
+      "data",
+      "y");
+  }
 }
 
 function
@@ -222,9 +240,8 @@ function
     _text = [
       `${app_name} configuration:`,
       `      Runtime environment:   ${runtime_environment}`,
+      `              Decode data:   ${decode_data}`,
       `              Encode data:   ${encode_data}`,
-      `       Maximum chunk size:   ${size_max} bytes`,
-      `         Amount of chunks:   ${chunks_amount}`,
       `              Input files:`,
     ];
   for ( _file of _input_files ) {
