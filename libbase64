@@ -297,7 +297,7 @@ async function
         "memory"              // encoding type
       ];
     try {
-      _encoded_files = [
+      _encoded_files =
         await _bin2txt.apply(
           null,
           _bin2txt_args);
