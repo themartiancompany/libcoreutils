@@ -126,6 +126,11 @@ const
 const
   _rm =
     _libcrash._rm;
+/* global
+     _rmdir */
+const
+  _rmdir =
+    _libcrash._rmdir;
 const
   _encoding_tools_module =
     await _require(
@@ -515,7 +520,7 @@ async function
       _rm(
         _file);
     }
-    _rm(
+    _rmdir(
       _tmp_dir);
     _printf(
       "\n");
