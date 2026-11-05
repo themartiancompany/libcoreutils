@@ -45,6 +45,11 @@ const
 _argv =
   _libcrash._argv;
 /* global
+     _argv_get */
+const
+_argv_get =
+  _libcrash._argv_get;
+/* global
      _argv_url_get */
 const
 _argv_url_get =
@@ -109,11 +114,6 @@ _require =
 const
   _set =
     _libcrash._set;
-/* global
-     _yargv_get */
-const
-_yargv_get =
-  _libcrash._yargv_get;
 const
   _base64_module =
     await import(
@@ -338,8 +338,22 @@ function
 async function 
   _cmdline_parse() {
   const
+    _argv_args = {
+      "booleans": [
+        "h",
+        "help",
+        "Q",
+        "with-colons",
+        "v",
+        "verbose"
+      ],
+      "string":
+        true
+    };
+  const
     _argv =
-      await _yargv_get();
+      await _argv_get(
+        _argv_args);
   quiet = 
     "y";
   _set(
@@ -348,6 +362,8 @@ async function
     "node");
   _cmdline_parse_help(
     _argv);
+  _echo(
+    _argv);
   _input_args_check(
     _argv);
   _set(
@@ -355,6 +371,8 @@ async function
     "files",
     _argv[
       "_"]);
+  _echo(
+    input_files);
   if ( "d" in _argv ) {
     _set(
       "decode",
