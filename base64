@@ -454,19 +454,23 @@ function
 _global_variables();
 _overrides_set();
 if ( _cmdline_check(
-       "tmcsplit") ) {
+       "tmcbase64") ||
+     _cmdline_check(
+       "base64") ||
+     _cmdline_check(
+       "base64.js") ) {
   await _cmdline_parse();
 }
 else {
   _url_parse();
 }
 _config_show();
-app_opts = [
-  input_file,
-  output_prefix,
-  chunks_amount,
-  size_max
-];
+const
+  app_opts = [
+    encode_data,
+    decode_data,
+    input_files,
+  ];
 try {
   _base64.apply(
     null,
@@ -477,12 +481,12 @@ catch(
   const
     _msg =
       "Error running '_base64' " +
-      "arguments:";
+      "with arguments:";
   _msg_error(
     _msg,
     0);
   _echo2(
-    _app_opts);
+    app_opts);
   _echo2(
     _error);
   _exit(
