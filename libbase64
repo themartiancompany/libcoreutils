@@ -259,6 +259,7 @@ async function
   let
     _bin2txt_args,
     _content,
+    _chunks_total,
     _encoded_files,
     _output_files,
     _file,
@@ -307,10 +308,13 @@ async function
         "memory"              // encoding type
       ];
       try {
-        _encoded_files =
+        [ _chunks_total,
+          _encoded_files ] =
           await _bin2txt.apply(
             null,
             _bin2txt_args);
+        _echo(
+          _encoded_files);
         _output_files =
           _output_files.concat(
             _encoded_files);
