@@ -72,10 +72,20 @@ const
   _mv =
     _libcrash._mv;
 /* global
+     _path_join */
+const
+  _path_join =
+    _libcrash._path_join;
+/* global
      _printf */
 const
   _printf =
     _libcrash._printf;
+/* global
+     _pwd */
+const
+  _pwd =
+    _libcrash._pwd;
 /* global
      _require */
 const
@@ -271,10 +281,22 @@ async function
       `in base64.`;
     _msg_info(
       _msg);
+    _out =
+      _path_join([
+        _pwd(),
+        "tmp."
+      ]);
     const
       _bin2txt_args = [
         _file,
         // a moment
+        _in,
+        _out,
+        _format,
+        _length,
+        _buffer_size_bytes,
+        _amount_only,
+        _encoding_type) {
       ];
     try {
       _encoded_files = [
