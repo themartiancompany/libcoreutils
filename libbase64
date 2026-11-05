@@ -379,6 +379,7 @@ async function
     _file,
     _msg,
     _target_command,
+    _tmp_dir,
     _stdout_print;
   const
     _global =
@@ -424,11 +425,10 @@ async function
         _out_prefix,
         true          // output target is a directory
       ];
-    const
-      _tmp_dir =
-        await _mktemp.apply(
-          null,
-          _mktemp_args);
+    _tmp_dir =
+      await _mktemp.apply(
+        null,
+        _mktemp_args);
     const
       _out_prefix_bin2txt =
         _path_join([
@@ -515,6 +515,8 @@ async function
       _rm(
         _file);
     }
+    _rm(
+      _tmp_dir);
     _printf(
       "\n");
   }
