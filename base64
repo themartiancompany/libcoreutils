@@ -178,12 +178,12 @@ function
     "max",
     "");
   /* global
-       input_file:
+       input_files:
          writable */
   _override_set(
     "input",
-    "file",
-    "");
+    "files",
+    []);
   /* global
        output_prefix:
          writable */
@@ -244,7 +244,7 @@ function
       `              Encode data:   ${encode_data}`,
       `              Input files:`,
     ];
-  for ( _file of _input_files ) {
+  for ( _file of input_files ) {
     _text.push(
       `                             ${_file}`);
   }
