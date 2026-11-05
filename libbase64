@@ -257,8 +257,10 @@ async function
     _input_files,
     _size_max) {
   let
+    _bin2txt_args,
     _content,
     _encoded_files,
+    _output_files,
     _file,
     _msg,
     _target_command;
@@ -292,43 +294,51 @@ async function
           _pwd(),
           "tmp."
         ]);
-    const
+    for ( _file of _input_files) {
       _bin2txt_args = [
         _file,
-        _out,
+        _out_prefix,
         "base64",             // format
         200000,               // length
         20000000,             // buffer_size_bytes
         "n",                  // amount only
         "memory"              // encoding type
       ];
-    try {
-      _encoded_files =
-        await _bin2txt.apply(
-          null,
+      try {
+        _encoded_files =
+          await _bin2txt.apply(
+            null,
+            _bin2txt_args);
+        _output_files =
+          _output_files.concat(
+            _encoded_files);
+      }
+      catch(
+        _error) {
+        _msg =
+          "Error running '_bin2txt' with " +
+          "arguments:";
+        _msg_error(
+          _msg,
+          0);
+        _echo2(
           _bin2txt_args);
+        _echo2(
+          _error);
+        throw _error;
+      }
     }
-    catch(
-      _error) {
-      _msg =
-        "Error running '_bin2txt' with " +
-        "arguments:";
-      _msg_error(
-        _msg,
-        0);
-      _echo2(
-        _bin2txt_args);
-      _echo2(
-        _error);
-      throw _error;
+    for ( _file of _encoded_files ) {
+      _content =
+        _cat(
+          _file);
+      _printf(
+        _content);
     }
   }
-  for ( _file of _encoded_files ) {
-    _content =
-      _cat(
-        _file);
-    _printf(
-      _content);
+  for ( _file of _output_files ) {
+    _rm(
+      _file);
   }
   return _output_files;
 }
