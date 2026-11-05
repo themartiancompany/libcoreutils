@@ -136,6 +136,81 @@ async function
   return _output_files;
 }
 
+function
+  _target_command_check(
+    _target_command) {
+  let
+    _msg,
+    _target_command_get;
+  _target_command_get =
+    false;
+  const
+    _default =
+      "encode";
+  const
+    _target_command_type =
+      typeof(
+        _target_command);
+  if ( _target_command_type === "undefined" ) {
+    _msg =
+      "Target command is undefined, setting " +
+      `default '${_encode}'.`;
+    _msg_info(
+      _msg);
+    _target_command_get =
+      true;
+  }
+  else if ( _target_command_type === "string" ) {
+    if ( _target_command.length < 1 ) {
+      _msg =
+        "Target command is an empty string, setting " +
+        `default '${_encode}'.`;
+      _msg_info(
+        _msg);
+      _target_command_get =
+        true;
+    }
+  }
+  else if ( _target_command_type === "object" ) {
+    _target_command_keys =
+      Object.keys(
+        _target_command);
+    if ( _target_command_keys.length < 1 ) {
+      _msg =
+        "Target command is an empty object, setting " +
+        `default '${_encode}'.`;
+      _msg_info(
+        _msg);
+      _target_command_get =
+        true;
+    }
+    else {
+      _msg =
+        "Variable 'target command' must be a string " +
+        "and can have values 'encode' or 'decode'.";
+      _msg_error(
+        _msg,
+        0);
+      throw _msg;
+    }
+  }
+  else {
+    _msg =
+      `Unknown type '${_target_command_type}' ` +
+      "for variable 'target command'. Allowed " +
+      "type is 'string' with values 'encode' or 'decode'.";
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
+  }
+  if ( _target_command_get ) {
+    _target_command =
+      _default;
+  }
+  return _target_command;
+}
+
 async function
   _base64(
     _target_command,
@@ -145,6 +220,22 @@ async function
     _size_max) {
   let
     _msg;
+  try {
+    _target_command =
+      _target_command_check(
+        _target_command);
+  }
+  catch(
+    _error) {
+    _msg =
+      "Error running '_target_command_check'.";
+    _msg_error(
+      _msg,
+      0);
+    _echo(
+      _error);
+    throw _error;
+  }
   const
     _chunks_amount_not_number =
       typeof(
