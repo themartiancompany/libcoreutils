@@ -26,7 +26,10 @@
   https://img.shields.io/npm/last-update/tmcsplit)](
     https://npmjs.org/package/tmcsplit)
 
-Javascript of some GNU Corutils programs.
+Javascript of some
+[GNU Coreutils](
+  https://www.gnu.org/software/coreutils)
+programs.
 
 Includes `base64`.
 
