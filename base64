@@ -352,60 +352,23 @@ async function
     _argv);
   _set(
     "input",
-    "file",
+    "files",
     _argv[
-      "_"][
-        0]);
-  if ( _argv[
-         "_"].length < 2 ) {
-    _set(
-      "output",
-      "prefix",
-      _get(
-        "input",
-        "file"));
-  }
-  if ( "a" in _argv ) {
-    _set(
-      "suffix",
-      "length",
-      _argv[
-        "a"]);
-  }
-  if ( "suffix-length" in _argv ) {
-    _set(
-      "suffix",
-      "length",
-      _argv[
-        "suffix-length"]);
-  }
-  if ( "suffix-length" in _argv ) {
-    _set(
-      "suffix",
-      "length",
-      _argv[
-        "suffix-length"]);
-  }
+      "_"]);
   if ( "d" in _argv ) {
     _set(
-      "numeric",
-      "suffix",
-      true);
+      "decode",
+      "data",
+      _argv[
+        "d"]);
   }
-  _set(
-    "chunks",
-    "amount",
-    _argv[
-      "chunks-amount"] ||
-    _argv[
-      "n"]);
-  _set(
-    "chunks",
-    "amount",
-    _argv[
-      "size-max"] ||
-    _argv[
-      "b"]);
+  if ( "decode" in _argv ) {
+    _set(
+      "decode",
+      "data",
+      _argv[
+        "decode-data"]);
+  }
   const
     _global =
       _global_get();
