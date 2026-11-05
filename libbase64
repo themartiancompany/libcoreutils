@@ -424,13 +424,15 @@ async function
         _out_prefix,
         true          // output target is a directory
       ];
-    _mktemp.apply(
-      null,
-      _mktemp_args);
+    const
+      _tmp_dir =
+        await _mktemp.apply(
+          null,
+          _mktemp_args);
     for ( _file of _input_files) {
       _bin2txt_args = [
         _file,
-        _out_prefix,
+        _tmp_dir,
         "base64",             // format
         100000,               // length
         20000000,             // buffer_size_bytes
