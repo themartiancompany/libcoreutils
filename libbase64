@@ -286,11 +286,12 @@ async function
       `in base64.`;
     _msg_info(
       _msg);
-    _out =
-      _path_join([
-        _pwd(),
-        "tmp."
-      ]);
+    const
+      _out_prefix =
+        _path_join([
+          _pwd(),
+          "tmp."
+        ]);
     const
       _bin2txt_args = [
         _file,
