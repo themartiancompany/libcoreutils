@@ -181,7 +181,7 @@ function
   if ( _target_command_type === "undefined" ) {
     _msg =
       "Target command is undefined, setting " +
-      `default '${_encode}'.`;
+      `default '${_default}'.`;
     _msg_info(
       _msg);
     _target_command_get =
