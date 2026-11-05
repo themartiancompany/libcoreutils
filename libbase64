@@ -378,6 +378,7 @@ async function
     _bin2txt_args,
     _content,
     _chunks_total,
+    _decoded_files,
     _encoded_files,
     _file_append_args,
     _output_files,
@@ -484,6 +485,44 @@ async function
         throw _error;
       }
     }
+  }
+  else if ( _target_command === "decode" ) {
+    const
+      _txt2bin_args = [
+      ];
+    try {
+      [ _chunks_total,
+        _decoded_files ] =
+        await _txt2bin.apply(
+          null,
+          _txt2bin_args);
+      _output_files =
+        _output_files.concat(
+          _decoded_files);
+    }
+    catch(
+      _error) {
+      _msg =
+        "Error running '_bin2txt' with " +
+        "arguments:";
+      _msg_error(
+        _msg,
+        0);
+      _echo2(
+        _bin2txt_args);
+      _echo2(
+        _error);
+      throw _error;
+    }
+  }
+  else {
+    _msg =
+      "Unknown command " +
+      `'${_target_command}'.`;
+    _msg_error(
+      _msg,
+      0);
+    throw _msg;
   }
   const
     _output_file_check_args = [
