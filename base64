@@ -429,6 +429,36 @@ function
   }
 }
 
+async function
+  _main() {
+  const
+    _app_opts = [
+      encode_data,
+      decode_data,
+      input_files,
+    ];
+  try {
+    _base64.apply(
+      null,
+      _app_opts);
+  }
+  catch(
+    _error) {
+    const
+      _msg =
+        "Error running '_base64' " +
+        "with arguments:";
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      app_opts);
+    _echo2(
+      _error);
+    throw _error;
+  }
+}
+
 _global_variables();
 _overrides_set();
 if ( _cmdline_check(
@@ -443,30 +473,17 @@ else {
   _url_parse();
 }
 _config_show();
-const
-  app_opts = [
-    encode_data,
-    decode_data,
-    input_files,
-  ];
 try {
-  _base64.apply(
-    null,
-    app_opts);
+  _main();
 }
 catch(
   _error) {
   const
     _msg =
-      "Error running '_base64' " +
-      "with arguments:";
+      "Error running '_main'.";
   _msg_error(
     _msg,
     0);
-  _echo2(
-    app_opts);
-  _echo2(
-    _error);
   _exit(
     1);
 }
