@@ -62,6 +62,11 @@ const
   _ls =
     _libcrash._ls;
 /* global
+     _mktemp */
+const
+  _mktemp =
+    _libcrash._mktemp;
+/* global
      _msg_error */
 const
   _msg_error =
@@ -96,6 +101,11 @@ const
 const
   _require =
     _libcrash._require;
+/* global
+     _rm */
+const
+  _rm =
+    _libcrash._rm;
 const
   _encoding_tools_module =
     await _require(
@@ -265,6 +275,13 @@ async function
     _file,
     _msg,
     _target_command;
+  const
+    _global =
+      _global_get();
+  const
+    _quiet =
+      _global[
+        "quiet"];
   _output_files =
     [];
   try {
@@ -297,23 +314,40 @@ async function
           _pwd(),
           "tmp."
         ]);
+    const
+      _mktemp_args = [
+        _out_prefix,
+        true          // output target is a directory
+      ];
+    _mktemp.apply(
+      null,
+      _mktemp_args);
     for ( _file of _input_files) {
       _bin2txt_args = [
         _file,
         _out_prefix,
         "base64",             // format
-        200000,               // length
+        100000,               // length
         20000000,             // buffer_size_bytes
         "n",                  // amount only
         "memory"              // encoding type
       ];
+      _msg =
+        "Running '_bin2txt' " +
+        "with arguments:";
+      _msg_info(
+        _msg);
+      if ( _quiet === "n" ) {
+        _echo(
+          _bin2txt_args);
+      }
       try {
         [ _chunks_total,
           _encoded_files ] =
           await _bin2txt.apply(
             null,
             _bin2txt_args);
-        _echo(
+        _echo2(
           _encoded_files);
         _output_files =
           _output_files.concat(
@@ -346,6 +380,8 @@ async function
     _rm(
       _file);
   }
+  _printf(
+    "\n");
   return _output_files;
 }
 
