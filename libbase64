@@ -289,14 +289,12 @@ async function
     const
       _bin2txt_args = [
         _file,
-        // a moment
-        _in,
         _out,
-        _format,
-        _length,
-        _buffer_size_bytes,
-        _amount_only,
-        _encoding_type) {
+        "base64",             // format
+        200000,               // length
+        20000000,             // buffer_size_bytes
+        "n",                  // amount only
+        "memory"              // encoding type
       ];
     try {
       _encoded_files = [
