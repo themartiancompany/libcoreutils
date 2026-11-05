@@ -48,7 +48,7 @@
     "type":
       "git",
     "url":
-      "git+https://github.com/themartiancompany/tmcbase64.git"
+      "git+https://github.com/themartiancompany/libcoreutils.git"
   },
   "license":
     "AGPL-3.0-or-later",
