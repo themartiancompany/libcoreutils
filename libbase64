@@ -342,6 +342,7 @@ function
         _output_file);
       throw _msg;
     }
+  }
   else {
     _msg =
       "Variable 'output file' should be " +
