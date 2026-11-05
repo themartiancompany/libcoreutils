@@ -367,6 +367,7 @@ async function
     _encode_data,
     _decode_data,
     _input_files,
+    _output_file,
     _size_max) {
   let
     _bin2txt_args,

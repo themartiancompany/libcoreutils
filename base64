@@ -162,20 +162,11 @@ function
     "data",
     "");
   /* global
-       chunks_amount:
+       output_file:
          writable */
   _override_set(
-    "chunks",
-    "amount",
-    "");
-  // string_length =
-  //   "";
-  /* global
-       size_max:
-         writable */
-  _override_set(
-    "size",
-    "max",
+    "output",
+    "file",
     "");
   /* global
        input_files:
@@ -184,13 +175,6 @@ function
     "input",
     "files",
     []);
-  /* global
-       output_prefix:
-         writable */
-  _override_set(
-    "output",
-    "prefix",
-    "");
   /* global
        quiet:
          writable */
@@ -210,11 +194,6 @@ function
 
 function 
   _overrides_set() {
-  const
-    _input_file =
-      _get(
-        "input",
-        "file");
   _override_set(
     "decode",
     "data",
@@ -243,6 +222,7 @@ function
       `      Runtime environment:   ${runtime_environment}`,
       `              Decode data:   ${decode_data}`,
       `              Encode data:   ${encode_data}`,
+      `              Output file:   ${output_file}`,
       `              Input files:`,
     ];
   for ( _file of input_files ) {
@@ -290,6 +270,8 @@ function
       "",
       "     -d, --decode                  Decode data.",
       `                                   Default: '${decode_data}'`,
+      "     -o, --output-file             Save data onto a file.",
+      `                                   Default: '${output_file}'`,
       "",
       "     -h --help                     This message.",
       "     -v --verbose                  Enable verbose output.",
