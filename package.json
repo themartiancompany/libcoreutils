@@ -64,7 +64,7 @@
     "compression":
       "^1.8.2",
     "crash-js-webpack":
-      "^0.0.84",
+      "^0.0.85",
     "eslint":
       "^10.14.0",
     "globals":
@@ -86,11 +86,11 @@
   },
   "dependencies": {
     "libcrash-js":
-      "npm:crash-js@^1000000000000020.1000000000000001.1000000000000001",
+      "npm:crash-js@^1000000000000021.1000000000000001.1000000000000001",
     "minimatch":
       "^11.0.4",
     "encoding-tools":
-      "^0.0.24"
+      "^0.0.25"
   },
   "overrides": {
     "compression":
@@ -104,6 +104,8 @@
     "minimatch":
       "^11.0.4",
     "base64":
+      "./libbase64"
+    "sha256sum":
       "./libbase64"
   },
   "type":

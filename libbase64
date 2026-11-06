@@ -414,27 +414,43 @@ async function
       _error);
     throw _error;
   }
+  const
+    _out_prefix =
+      _path_join([
+        _pwd(),
+        "tmp."
+      ]);
+  const
+    _mktemp_args = [
+      _out_prefix,
+      true          // output target is a directory
+    ];
+  try {
+    _tmp_dir =
+      await _mktemp.apply(
+        null,
+        _mktemp_args);
+  }
+  catch(
+    _error) {
+    _msg =
+      "Error running '_mktemp' " +
+      "arguments:";
+    _msg_error(
+      _msg,
+      0);
+    _echo2(
+      _mktemp_args);
+    _echo2(
+      _error);
+    throw _error;
+  }
   if ( _target_command === "encode" ) {
     _msg =
       `Encoding file '${_file}' ` +
       `in base64.`;
     _msg_info(
       _msg);
-    const
-      _out_prefix =
-        _path_join([
-          _pwd(),
-          "tmp."
-        ]);
-    const
-      _mktemp_args = [
-        _out_prefix,
-        true          // output target is a directory
-      ];
-    _tmp_dir =
-      await _mktemp.apply(
-        null,
-        _mktemp_args);
     const
       _out_prefix_bin2txt =
         _path_join([
@@ -488,7 +504,19 @@ async function
   }
   else if ( _target_command === "decode" ) {
     const
+      _out_file_txt2bin =
+        _path_join([
+          _tmp_dir,
+          "tmp."
+        ]);
+    const
       _txt2bin_args = [
+        _out_file_txt2bin,
+        "base64",            // encoding format
+        "file",              // argument type
+        _encoding_type,
+        _input_files,
+        _input_files_sanity_check) {
       ];
     try {
       [ _chunks_total,
@@ -578,6 +606,8 @@ async function
         _file_append_args);
       _rm(
         _file);
+      _rmdir(
+        _tmp_dir);
     }
   }
   return _output_files;
