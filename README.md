@@ -99,11 +99,18 @@ ur \
   "nodejs-libcoreutils"
 ```
 
+The
+[Gur](
+  https://github.com/themartiancompany/gur)
+Github mirror is on
+[`nodejs-libcoreutils-ur`](
+  https://github.com/themartiancompany/nodejs-libcoreutils-ur).
+
 ### Documentation
 
 Upon installation the manual can be accessed with
 `man base64.js` but really it's the same as
-GNU Split, so you can also refer to `man base64`
+GNU Base64, so you can also refer to `man base64`
 for what is it implemented.
 
 # License
