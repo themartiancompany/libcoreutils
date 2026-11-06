@@ -2,7 +2,7 @@
   "name":
     "libcoreutils",
   "version":
-    "0.0.25",
+    "0.0.26",
   "description":
     "Javascript implementations of some GNU coreutils.",
   "funding": {
