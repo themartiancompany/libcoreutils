@@ -514,9 +514,9 @@ async function
         _out_file_txt2bin,
         "base64",            // encoding format
         "file",              // argument type
-        _encoding_type,
+        "",                  // encoding type (unused)
         _input_files,
-        _input_files_sanity_check) {
+        true                 // input files sanity check
       ];
     try {
       [ _chunks_total,
