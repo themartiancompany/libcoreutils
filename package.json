@@ -90,7 +90,7 @@
     "minimatch":
       "^11.0.4",
     "encoding-tools":
-      "^0.0.25"
+      "^0.0.28"
   },
   "overrides": {
     "base64":

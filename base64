@@ -325,8 +325,8 @@ async function
       "booleans": [
         "h",
         "help",
-        "Q",
-        "with-colons",
+        "d",
+        "decode",
         "v",
         "verbose"
       ],
