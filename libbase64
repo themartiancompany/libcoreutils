@@ -616,7 +616,6 @@ async function
       _rmdir(
         _tmp_dir);
     }
-
   }
   return _output_files;
 }
