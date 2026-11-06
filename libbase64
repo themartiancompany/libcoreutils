@@ -587,8 +587,6 @@ async function
     }
     _rmdir(
       _tmp_dir);
-    _printf(
-      "\n");
   }
   else {
     if ( _target_command === "encode" ) {
