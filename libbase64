@@ -381,6 +381,7 @@ async function
     _decoded_files,
     _encoded_files,
     _file_append_args,
+    _out_file_txt2bin,
     _output_files,
     _file,
     _msg,
@@ -503,12 +504,11 @@ async function
     }
   }
   else if ( _target_command === "decode" ) {
-    const
-      _out_file_txt2bin =
-        _path_join([
-          _tmp_dir,
-          "tmp."
-        ]);
+    _out_file_txt2bin =
+      _path_join([
+        _tmp_dir,
+        "tmp."
+      ]);
     const
       _txt2bin_args = [
         _out_file_txt2bin,
@@ -519,14 +519,12 @@ async function
         true                 // input files sanity check
       ];
     try {
-      [ _chunks_total,
-        _decoded_files ] =
+      _out_file_txt2bin =
         await _txt2bin.apply(
           null,
           _txt2bin_args);
-      _output_files =
-        _output_files.concat(
-          _decoded_files);
+      _output_files.push(
+        _out_file_txt2bin);
     }
     catch(
       _error) {
@@ -593,22 +591,34 @@ async function
       "\n");
   }
   else {
-    for ( _file of _output_files ) {
-      _content =
-        _cat(
+    if ( _target_command === "encode" ) {
+      for ( _file of _output_files ) {
+        _content =
+          _cat(
+            _file);
+        _file_append_args = [
+          _output_file,
+          _content
+        ];
+        _file_append.apply(
+          null,
+          _file_append_args);
+        _rm(
           _file);
-      _file_append_args = [
-        _output_file,
-        _content
-      ];
-      _file_append.apply(
-        null,
-        _file_append_args);
+        _rmdir(
+          _tmp_dir);
+      }
+    }
+    else if ( _target_command === "decode" ) {
+      _cp(
+        _out_file_txt2bin,
+        _output_file);
       _rm(
-        _file);
+        _out_file_txt2bin);
       _rmdir(
         _tmp_dir);
     }
+
   }
   return _output_files;
 }
