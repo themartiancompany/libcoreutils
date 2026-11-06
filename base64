@@ -368,6 +368,7 @@ async function
       "decode",
       "data",
       "y");
+    }
   }
   const
     _global =
