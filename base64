@@ -194,6 +194,8 @@ function
 
 function 
   _overrides_set() {
+  let
+    _encode_data;
   _override_set(
     "decode",
     "data",
@@ -204,11 +206,17 @@ function
         "decode",
         "data");
   if ( _decode_data === "n" ) {
-    _override_set(
-      "encode",
-      "data",
-      "y");
+    _encode_data =
+      "y";
   }
+  else if ( _decode_data === "y" ) {
+    _encode_data =
+      "n";
+  }
+  _override_set(
+    "encode",
+    "data",
+    _encode_data);
 }
 
 function
