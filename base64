@@ -205,6 +205,7 @@ function
       _get(
         "decode",
         "data");
+  _echo(_decode_data);
   if ( _decode_data === "n" ) {
     _encode_data =
       "y";
@@ -378,6 +379,9 @@ async function
       "y");
     }
   }
+  _echo(
+    _get(
+      "decode", "data"));
   const
     _global =
       _global_get();
@@ -454,7 +458,6 @@ async function
 }
 
 _global_variables();
-_overrides_set();
 if ( _cmdline_check(
        "tmcbase64") ||
      _cmdline_check(
@@ -466,6 +469,7 @@ if ( _cmdline_check(
 else {
   _url_parse();
 }
+_overrides_set();
 _config_show();
 try {
   _main();
