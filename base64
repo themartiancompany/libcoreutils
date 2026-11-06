@@ -205,7 +205,6 @@ function
       _get(
         "decode",
         "data");
-  _echo(_decode_data);
   if ( _decode_data === "n" ) {
     _encode_data =
       "y";
@@ -379,9 +378,6 @@ async function
       "y");
     }
   }
-  _echo(
-    _get(
-      "decode", "data"));
   const
     _global =
       _global_get();
