@@ -105,8 +105,6 @@
       "^11.0.4",
     "base64":
       "./libbase64"
-    "sha256sum":
-      "./libbase64"
   },
   "type":
     "module",
