@@ -353,18 +353,21 @@ async function
     _argv[
       "_"]);
   if ( "d" in _argv ) {
+    if ( _argv[
+           "d"] ) {
     _set(
       "decode",
       "data",
-      _argv[
-        "d"]);
+      "y");
+    }
   }
   if ( "decode" in _argv ) {
+    if ( _argv[
+           "decode"] ) {
     _set(
       "decode",
       "data",
-      _argv[
-        "decode-data"]);
+      "y");
   }
   const
     _global =
